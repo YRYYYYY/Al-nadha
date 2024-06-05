@@ -100,8 +100,8 @@ async def run_process_cards():
 				data = {"num": num, "month": month, "year": year, "code": code}
 				with open(file_path, 'w') as file:
 					json.dump(data, file)
-					await client.send_message('me', f"تم العثور على بيانات معنونة: {data}")
-					await run_process_cards()
+				await client.send_message('me', f"تم العثور على بيانات معنونة: {data}")
+				await run_process_cards()
 			else:
 				await client.send_message('me', f"تم العثور على رسالة تحتوي على أكثر من 16 رقم، لكن لم يتم التعرف على النمط: {message_text}")
 @client.on(events.NewMessage(pattern='/start'))
