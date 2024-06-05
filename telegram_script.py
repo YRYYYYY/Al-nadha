@@ -107,4 +107,5 @@ async def start_handler(event):
 	await event.respond('Begin...')
 
 client.start()
-client.run_until_disconnected()
+while True:
+ client.run_until_disconnected()
