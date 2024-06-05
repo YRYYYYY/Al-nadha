@@ -1,5 +1,7 @@
 from telethon import TelegramClient, events, sync
 from telethon.tl.functions.messages import GetHistoryRequest, GetBotCallbackAnswerRequest
+from telethon.sync import TelegramClient
+from telethon.sessions import StringSession
 import re
 import json 
 import os
