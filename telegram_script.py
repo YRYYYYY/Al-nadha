@@ -79,8 +79,8 @@ def contains_more_than_16_digits(text):
 
 #client = TelegramClient('session_name', api_id, api_hash)
 with TelegramClient(StringSession(session_string), api_id, api_hash) as client:
-
-is_bot_active = True
+	
+	is_bot_active = True
 
 async def run_process_cards():
 
