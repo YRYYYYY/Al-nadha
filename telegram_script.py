@@ -87,7 +87,7 @@ client = TelegramClient(StringSession(session_string), api_id, api_hash)
 
 async def run_process_cards():
 
-    process = await asyncio.create_subprocess_exec('python', '/storage/emulated/0/Documents/pydroid3/xforce/process_cards.py')
+    process = await asyncio.create_subprocess_exec('python', 'process_cards.py')
 
     await process.wait()
 
