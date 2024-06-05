@@ -9,15 +9,17 @@ import time
 import asyncio 
 import subprocess
 
+
 print("start...")
 
-
-  # معرف المجموعة المستهدفة
 group_id = '-1001833380321'
 file_path = 'cards.json'
 api_id = os.environ['API_ID']
 api_hash = os.environ['API_HASH']
 session_string = os.environ['TELETHON_SESSION']
+
+# تعريف الكائن client
+client = TelegramClient(StringSession(session_string), api_id, api_hash)
 
 
 async def process_messages():
@@ -80,13 +82,13 @@ def contains_more_than_16_digits(text):
 
 #client = TelegramClient('session_name', api_id, api_hash)
 #with TelegramClient(StringSession(session_string), api_id, api_hash) as client:
-client = TelegramClient(StringSession(session_string), api_id, api_hash)
+#client = TelegramClient(StringSession(session_string), api_id, api_hash)
 
 async def run_process_cards():
 		process = await asyncio.create_subprocess_exec('python','process_cards.py')
 		await process.wait()
 		@client.on(events.NewMessage(chats=int(group_id)))
-		async def handler(event):
+                async def handler(event):
 			message_text = event.message.text
 			if contains_more_than_16_digits(message_text):
 				fields = (extract_fields_v1(message_text) or 
@@ -104,8 +106,13 @@ async def run_process_cards():
 					await client.send_message('me', f"تم العثور على رسالة تحتوي على أكثر من 16 رقم، لكن لم يتم التعرف على النمط: {message_text}")
 @client.on(events.NewMessage(pattern='/start'))
 async def start_handler(event):
-	await event.respond('Begin...')
+    await event.respond('Begin...')
 
-client.start()
-while True:
- client.run_until_disconnected()
+async def main():
+    await client.start()
+    print("العميل يعمل الآن...")
+    await client.run_until_disconnected()
+
+# تشغيل الدالة الرئيسية
+with client:
+    client.loop.run_until_complete(main())
