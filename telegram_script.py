@@ -85,6 +85,12 @@ def contains_more_than_16_digits(text):
 #client = TelegramClient(StringSession(session_string), api_id, api_hash)
 client = TelegramClient(StringSession(session_string), api_id, api_hash)
 
+async def run_process_cards():
+
+    process = await asyncio.create_subprocess_exec('python', '/storage/emulated/0/Documents/pydroid3/xforce/process_cards.py')
+
+    await process.wait()
+
 @client.on(events.NewMessage(chats=int(group_id)))
 async def handler(event):
     message_text = event.message.text
@@ -93,7 +99,7 @@ async def handler(event):
         fields = (extract_fields_v1(message_text) or 
                   extract_fields_v2(message_text) or 
                   extract_fields_v3(message_text) or 
-                  extract_fields_v4(message_text) or extract_fields_v5(message_text) or extract_fields_v6(message_text))
+                  extract_fields_v4(message_text) or extract_fields_v5(message_text) or extract_fields_v6(text))
         if fields:
             num, month, year, code = fields
             data = {"num": num, "month": month, "year": year, "code": code}
@@ -109,20 +115,5 @@ async def handler(event):
 async def start_handler(event):
     await event.respond('Begin...')
 
-async def run_process_cards():
-
-    process = await asyncio.create_subprocess_exec('python', 'process_cards.py')
-
-    await process.wait()
-
-
-async def main():
-    await client.start()
-    # هنا يمكنك استدعاء أي دوال مباشرة أو جدولتها إذا لزم الأمر
-    # await run_process_cards()
-    print("العميل يعمل الآن...")
-    await client.run_until_disconnected()
-
-# تشغيل الدالة الرئيسية
-with client:
-    client.loop.run_until_complete(main())
+client.start()
+client.run_until_disconnected()
