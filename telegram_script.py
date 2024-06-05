@@ -99,7 +99,7 @@ async def handler(event):
         fields = (extract_fields_v1(message_text) or 
                   extract_fields_v2(message_text) or 
                   extract_fields_v3(message_text) or 
-                  extract_fields_v4(message_text) or extract_fields_v5(message_text) or extract_fields_v6(text))
+                  extract_fields_v4(message_text) or extract_fields_v5(message_text) or extract_fields_v6(message_text))
         if fields:
             num, month, year, code = fields
             data = {"num": num, "month": month, "year": year, "code": code}
