@@ -37,16 +37,16 @@ def extract_fields_v2(text):
     match = re.search(r'(\d{16})\|(\d{2}/\d{2})\|(\d{3,4})', text)
     if match:
         parts = match.groups()
-        num, month, year_str, code = parts
-        month, year_str = month_year.split('/')
-        return num, month, year_str, code
+        num, month, year, code = parts
+        month, year = month.split('/')
+        return num, month, year, code
     return None
 
 def extract_fields_v3(text):
     match = re.search(r'(\d{16})\|(\d{2})\|(\d{2})\r\n(\d{3,4})', text)
     if match:
-        num, month, year_str, code = match.groups()
-        return num, month, year_str, code
+        num, month, year, code = match.groups()
+        return num, month, year, code
     return None
 
 def extract_fields_v4(text):
@@ -62,8 +62,8 @@ def extract_fields_v5(text):
     if match:
        # print("تم التعرف على النمط 5.")
         parts = match.groups()
-        num, month, year_str, code = parts
-        return num, month, year_str, code
+        num, month, year, code = parts
+        return num, month, year, code
     return None
     
 def extract_fields_v6(text):
