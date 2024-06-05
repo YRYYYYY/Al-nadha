@@ -70,7 +70,7 @@ def extract_fields_v5(text):
     
 def extract_fields_v6(text):
     
-    match = re.search(r'(d{16})|(d{2})|(d{4})|(d{3,4})', text)
+    match = re.search(r'(d{16})|(d{2})|(d{4})|(d{3,4})'', text)
     if match:
         return match.groups()
     return None
@@ -83,33 +83,43 @@ def contains_more_than_16_digits(text):
 #client = TelegramClient('session_name', api_id, api_hash)
 #with TelegramClient(StringSession(session_string), api_id, api_hash) as client:
 #client = TelegramClient(StringSession(session_string), api_id, api_hash)
+client = TelegramClient(StringSession(session_string), api_id, api_hash)
 
-async def run_process_cards():
-	process = await asyncio.create_subprocess_exec('python','process_cards.py')
-	await process.wait()
-	@client.on(events.NewMessage(chats=int(group_id)))
-	async def handler(event):
-		message_text = event.message.text
-		if contains_more_than_16_digits(message_text):
-			fields = (extract_fields_v1(message_text) or 
+@client.on(events.NewMessage(chats=int(group_id)))
+async def handler(event):
+    message_text = event.message.text
+  
+    if contains_more_than_16_digits(message_text):
+        fields = (extract_fields_v1(message_text) or 
                   extract_fields_v2(message_text) or 
                   extract_fields_v3(message_text) or 
                   extract_fields_v4(message_text) or extract_fields_v5(message_text) or extract_fields_v6(text))
-			if fields:
-				num, month, year, code = fields
-				data = {"num": num, "month": month, "year": year, "code": code}
-				with open(file_path, 'w') as file:
-					json.dump(data, file)
-				await client.send_message('me', f"تم العثور على بيانات معنونة: {data}")
-				await run_process_cards()
-			else:
-				await client.send_message('me', f"تم العثور على رسالة تحتوي على أكثر من 16 رقم، لكن لم يتم التعرف على النمط: {message_text}")
+        if fields:
+            num, month, year, code = fields
+            data = {"num": num, "month": month, "year": year, "code": code}
+            with open(file_path, 'w') as file:
+                json.dump(data, file)
+            await client.send_message('me', f"تم العثور على بيانات معنونة: {data}")
+          
+            await run_process_cards()
+        else:
+            await client.send_message('me', f"تم العثور على رسالة تحتوي على أكثر من 16 رقم، لكن لم يتم التعرف على النمط: {message_text}")
+
 @client.on(events.NewMessage(pattern='/start'))
 async def start_handler(event):
     await event.respond('Begin...')
 
+async def run_process_cards():
+
+    process = await asyncio.create_subprocess_exec('python', 'process_cards.py')
+
+    await process.wait()
+
+
 async def main():
     await client.start()
+    # هنا يمكنك استدعاء أي دوال مباشرة أو جدولتها إذا لزم الأمر
+    # await run_process_cards()
     print("العميل يعمل الآن...")
     await client.run_until_disconnected()
 
