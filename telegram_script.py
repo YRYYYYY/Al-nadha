@@ -72,7 +72,7 @@ def contains_more_than_16_digits(text):
     total_digits = sum(len(d) for d in digits)
     return total_digits > 16
 
-client = TelegramClient('session_name', api_id, api_hash)
+client = TelegramClient('1BJWap1sBuzyrakr7EMeYZAuPgYCqfQQKVEkmlQ_RJHgLZf0RAEU0A53sn7fqoQJnJAFABqTlY3agzWiWVdFVEIuJKvqOUf2E97JTDUq50qrhkdOW0FH4DunS5cnUWle7BZ8PyelagpbCDEkurvHuMm-1JPFtxlofnhEk6otRSymTkWByFKrqnN8cfWV7THppNSjwaU9vRxXDFRKZ0rVaJ5SYgNSzmi_Hsesti2ejOOIwNbOSmIO2wXmpmv8r1Fo8KBr4kHmbVaHQGSf675-7XDWGGU_XUHHhJjRTaZ5bRDRVvTd9OXT4nzD3TE1znPtNuuAzLI3kkAt9TDklGIo5N2onbU5mTWQ=', api_id, api_hash)
 
 is_bot_active = True
 
