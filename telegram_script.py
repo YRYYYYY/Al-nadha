@@ -2,6 +2,7 @@ from telethon import TelegramClient, events, sync
 from telethon.tl.functions.messages import GetHistoryRequest, GetBotCallbackAnswerRequest
 import re
 import json 
+import os
 import time
 import asyncio 
 import subprocess
