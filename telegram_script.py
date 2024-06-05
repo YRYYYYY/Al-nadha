@@ -102,7 +102,7 @@ async def handler(event):
                   if fields:
                   	num, month, year, code = fields
                   	data = {"num": num, "month":
-                  	month, "year": year_str, "code":code}
+                  	month, "year": year, "code":code}
                   	with open(file_path, 'w') as file:
                   				json.dump(data, file)
                   	await client.send_message('me', f"تم العثور على بيانات معنونة: {data}")
