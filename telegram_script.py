@@ -70,7 +70,7 @@ def extract_fields_v5(text):
     
 def extract_fields_v6(text):
     
-    match = re.search(r'(d{16})|(d{2})|(d{4})|(d{3,4})'', text)
+    match = re.search(r'(d{16})|(d{2})|(d{4})|(d{3,4})', text)
     if match:
         return match.groups()
     return None
