@@ -3,7 +3,7 @@ import os,re,time,random
 from user_agent import generate_user_agent
 import json
 
-file_path = '/storage/emulated/0/Documents/pydroid3/xforce/cards.json'
+file_path = 'cards.json'
 bot_token = "5556552193:AAGGN0Mfi22qYaennhcLc-lMmqLrwOmi5LY"
 chat_id = "1008961594"
 
