@@ -12,8 +12,8 @@ print("start...")
   # معرف المجموعة المستهدفة
 group_id = '-1001833380321'
 file_path = 'cards.json'
-api_id = '15372008'
-api_hash = 'ed85c35370cffb1e2cf050e44e635d26'
+api_id = '26127417'
+api_hash = '829adb8b07fc99aac2d3bb8061372a6d'
 
 async def process_messages():
 	def convert_year(year):
