@@ -21,8 +21,8 @@ session_string = os.environ['TELETHON_SESSION']
 
 
 async def process_messages():
-	def convert_year_str(year):
-	   year_str= str(year_str)
+	def convert_year(year):
+	   year_str = str(year)
 	   if len(year_str) == 4:
 	   	return year_str[-2:]
 	   return year_str
@@ -37,8 +37,8 @@ def extract_fields_v2(text):
     match = re.search(r'(\d{16})\|(\d{2}/\d{2})\|(\d{3,4})', text)
     if match:
         parts = match.groups()
-        num, month, year, code = parts
-        month, year = month.split('/')
+        num, month_year, code = parts
+        month, year = month_year.split('/')
         return num, month, year, code
     return None
 
@@ -81,7 +81,7 @@ def contains_more_than_16_digits(text):
 #client = TelegramClient('session_name', api_id, api_hash)
 with TelegramClient(StringSession(session_string), api_id, api_hash) as client:
 	
-	is_bot_active = True
+	
 
 async def run_process_cards():
 
@@ -92,36 +92,26 @@ async def run_process_cards():
 @client.on(events.NewMessage(chats=int(group_id)))
 async def handler(event):
     message_text = event.message.text
-    fields = None
-    if is_bot_active:
-                  if contains_more_than_16_digits(message_text):
-                  	fields = (extract_fields_v1(message_text) or 
+  
+    if contains_more_than_16_digits(message_text):
+        fields = (extract_fields_v1(message_text) or 
                   extract_fields_v2(message_text) or 
                   extract_fields_v3(message_text) or 
-                  extract_fields_v4(message_text) or extract_fields_v5(message_text) or extract_fields_v6(message_text))
-                  if fields:
-                  	num, month, year, code = fields
-                  	data = {"num": num, "month":
-                  	month, "year": year, "code":code}
-                  	with open(file_path, 'w') as file:
-                  				json.dump(data, file)
-                  	await client.send_message('me', f"تم العثور على بيانات معنونة: {data}")
-                  	await run_process_cards()
-                  else:
-                  		await client.send_message('me', f"تم العثور على رسالة تحتوي على أكثر من 16 رقم، لكن لم يتم التعرف على النمط: {message_text}")
-                  		pass  
+                  extract_fields_v4(message_text) or extract_fields_v5(message_text) or extract_fields_v6(text))
+        if fields:
+            num, month, year, code = fields
+            data = {"num": num, "month": month, "year": year, "code": code}
+            with open(file_path, 'w') as file:
+                json.dump(data, file)
+            await client.send_message('me', f"تم العثور على بيانات معنونة: {data}")
+          
+            await run_process_cards()
+        else:
+            await client.send_message('me', f"تم العثور على رسالة تحتوي على أكثر من 16 رقم، لكن لم يتم التعرف على النمط: {message_text}")
+
 @client.on(events.NewMessage(pattern='/start'))
 async def start_handler(event):
-    global is_bot_active
-    is_bot_active = True  
-    await event.respond('Bot is now active...')
-
-@client.on(events.NewMessage(pattern='/stop'))
-async def stop_handler(event):
-    global is_bot_active
-    is_bot_active = False  
-    await event.respond('Bot is now inactive...')
+    await event.respond('Begin...')
 
 client.start()
-while True:
-	client.run_until_disconnected()
+client.run_until_disconnected()
