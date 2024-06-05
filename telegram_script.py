@@ -79,7 +79,8 @@ def contains_more_than_16_digits(text):
     return total_digits > 16
 
 #client = TelegramClient('session_name', api_id, api_hash)
-with TelegramClient(StringSession(session_string), api_id, api_hash) as client:
+client = TelegramClient(StringSession(session_string), api_id, api_hash)
+#with TelegramClient(StringSession(session_string), api_id, api_hash) as client:
 	async def run_process_cards():
 		process = await asyncio.create_subprocess_exec('python','process_cards.py')
 		await process.wait()
