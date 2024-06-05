@@ -15,7 +15,7 @@ def read_cards(file_path):
 def process_cards(cards):
     
         for card in cards:
-        	formatted_card = f"{card['num']}|{card['month']}|{card['year_str']}|{card['code']}"
+        	formatted_card = f"{card['num']}|{card['month']}|{card['year']}|{card['code']}"
         	nn, mm, yy, cvc = formatted_card.strip().split('|')
         	
         	headers = {
