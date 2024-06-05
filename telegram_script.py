@@ -15,9 +15,10 @@ print("start...")
   # معرف المجموعة المستهدفة
 group_id = '-1001833380321'
 file_path = 'cards.json'
-api_id = '26127417'
-api_hash = '829adb8b07fc99aac2d3bb8061372a6d'
-session_string = os.environ.get('1BJWap1sBuy-_9YzAYfCVPGO9jtjQtAxcznNqzl0NgiceDx-3AqUfS-dP0QEIzvx-q2OFHTXF_9p3-7FJrstf4YmI8Y1560W6A374A_Rm16-l4_ptzqe37bU8bPDprEdz5IFbswgo2s5LoGMehhKeUMr1ezLm2im172lVqA21gHSW-Uxz5hCGcbrOgAQYoxnNjwSNF7JZiTxsAnQYF6fKqanRahh_KnKqYuJTMQLMFk93jQNc5NzfwaAivwF-VZh1xC8gaMR5cRVvfP4xdU9c9l52X0QEGLmM5gp74Q3qONp-ulFfeeaQRwSyXwgROBXSZwPOyWHkRwTYj_LMXGjF_VwwO6exE2o=')
+api_id = os.environ['API_ID']
+api_hash = os.environ['API_HASH']
+session_string = os.environ['TELETHON_SESSION']
+
 
 async def process_messages():
 	def convert_year(year):
@@ -77,8 +78,7 @@ def contains_more_than_16_digits(text):
     return total_digits > 16
 
 #client = TelegramClient('session_name', api_id, api_hash)
-
-client = TelegramClient(StringSession(session_string), api_id, api_hash)
+with TelegramClient(StringSession(session_string), api_id, api_hash) as client:
 
 is_bot_active = True
 
