@@ -79,9 +79,10 @@ def contains_more_than_16_digits(text):
     return total_digits > 16
 
 #client = TelegramClient('session_name', api_id, api_hash)
-client = TelegramClient(StringSession(session_string), api_id, api_hash)
 #with TelegramClient(StringSession(session_string), api_id, api_hash) as client:
-	async def run_process_cards():
+client = TelegramClient(StringSession(session_string), api_id, api_hash)
+
+async def run_process_cards():
 		process = await asyncio.create_subprocess_exec('python','process_cards.py')
 		await process.wait()
 		@client.on(events.NewMessage(chats=int(group_id)))
@@ -103,7 +104,7 @@ client = TelegramClient(StringSession(session_string), api_id, api_hash)
 					await client.send_message('me', f"تم العثور على رسالة تحتوي على أكثر من 16 رقم، لكن لم يتم التعرف على النمط: {message_text}")
 @client.on(events.NewMessage(pattern='/start'))
 async def start_handler(event):
-await event.respond('Begin...')
+	await event.respond('Begin...')
 
 client.start()
 client.run_until_disconnected()
