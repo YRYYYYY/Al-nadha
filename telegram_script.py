@@ -85,17 +85,22 @@ def contains_more_than_16_digits(text):
 #client = TelegramClient(StringSession(session_string), api_id, api_hash)
 client = TelegramClient(StringSession(session_string), api_id, api_hash)
 
+processing_cards = False
+
 async def run_process_cards():
-
-    process = await asyncio.create_subprocess_exec('python', 'process_cards.py')
-
-    await process.wait()
+    global processing_cards
+    if not processing_cards:
+        processing_cards = True
+        process = await asyncio.create_subprocess_exec('python', 'process_cards.py')
+        await process.wait
+        processing_cards = False
 
 @client.on(events.NewMessage(chats=int(group_id)))
 async def handler(event):
+    global processing_cards
     message_text = event.message.text
-  
-    if contains_more_than_16_digits(message_text):
+    
+    if contains_more_than_16_digits(message_text) and not processing_cards:
         fields = (extract_fields_v1(message_text) or 
                   extract_fields_v2(message_text) or 
                   extract_fields_v3(message_text) or 
@@ -120,6 +125,5 @@ async def main():
     print("العميل يعمل الآن...")
     await client.run_until_disconnected()
 
-# نقطة الدخول للبرنامج
 if __name__ == '__main__':
-    client.loop.run_until_complete(main())
+    asyncio.run(main())
