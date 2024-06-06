@@ -115,5 +115,11 @@ async def handler(event):
 async def start_handler(event):
     await event.respond('Begin...')
 
-client.start()
-client.run_until_disconnected()
+async def main():
+    await client.start()
+    print("العميل يعمل الآن...")
+    await client.run_until_disconnected()
+
+# نقطة الدخول للبرنامج
+if __name__ == '__main__':
+    client.loop.run_until_complete(main())
