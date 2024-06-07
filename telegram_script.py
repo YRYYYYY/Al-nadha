@@ -92,7 +92,7 @@ async def run_process_cards():
     if not processing_cards:
         processing_cards = True
         process = await asyncio.create_subprocess_exec('python', 'process_cards.py')
-        await process.wait
+        await process.wait()
         processing_cards = False
 
 @client.on(events.NewMessage(chats=int(group_id)))
