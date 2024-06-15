@@ -132,7 +132,7 @@ def process_cards(cards):
     'mailpoet_woocommerce_checkout_optin_present': '1',
     'terms': 'on',
     'terms-field': '1',
-    'woocommerce-process-checkout-nonce': 'b82e91ddd2',
+    'woocommerce-process-checkout-nonce': '53751511da',
     '_wp_http_referer': '/?wc-ajax=update_order_review'
     
     }
