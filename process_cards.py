@@ -48,15 +48,17 @@ def process_cards(cards):
     'sbjs_first_add': 'fd%3D2024-06-15%2015%3A52%3A11%7C%7C%7Cep%3Dhttps%3A%2F%2Fal-nadha.com%2Fcart%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fal-nadha.com%2Fshop%2Funits%2Funits%2F',
     'sbjs_current': 'typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29',
     'sbjs_first': 'typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29',
-    'sbjs_udata': 'vst%3D1%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Linux%3B%20Android%2010%3B%20K%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F124.0.0.0%20Mobile%20Safari%2F537.36',
     '_gid': 'GA1.2.1006701108.1718466733',
-    'woocommerce_items_in_cart': '1',
-    'woocommerce_cart_hash': '548c6e177e54b8a870fb6eb16d85f8c5',
     'woocommerce_recently_viewed': '537',
     'wp_woocommerce_session_8181e73ab86fda8b24141304097755c5': 't_341ae88de80e73b971df3960b1c7d7%7C%7C1718639570%7C%7C1718635970%7C%7Ce9de48c1a588dd7dd6886188936ab047',
-    'sbjs_session': 'pgs%3D4%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fal-nadha.com%2Fcheckout%2F',
     '_ga': 'GA1.2.1890779885.1718466731',
-    '_ga_701NGE5REB': 'GS1.1.1718466731.1.1.1718466798.0.0.0',
+    '_ga_701NGE5REB': 'GS1.1.1718466731.1.1.1718467176.0.0.0',
+    'sbjs_udata': 'vst%3D2%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Linux%3B%20Android%2010%3B%20K%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F124.0.0.0%20Mobile%20Safari%2F537.36',
+    'woocommerce_items_in_cart': '1',
+    'woocommerce_cart_hash': '548c6e177e54b8a870fb6eb16d85f8c5',
+    'sbjs_session': 'pgs%3D8%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fal-nadha.com%2Fcheckout%2F',
+    'mailpoet_page_view': '%7B%22timestamp%22%3A1718470048%7D',
+
 
 
 }
