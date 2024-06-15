@@ -107,7 +107,7 @@ def process_cards(cards):
     'wc_order_attribution_utm_id': '(none)',
     'wc_order_attribution_utm_term': '(none)',
     'wc_order_attribution_session_entry': 'https://al-nadha.com/#',
-    'wc_order_attribution_session_start_time': '2024-05-30+20:43:50',
+    'wc_order_attribution_session_start_time': '2024-06-15+17:19:31',
     'wc_order_attribution_session_pages': '14',
     'wc_order_attribution_session_count': '1',
     'wc_order_attribution_user_agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
