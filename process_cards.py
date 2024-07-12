@@ -18,7 +18,7 @@ def process_cards(cards):
         	nn, mm, yy, cvc = formatted_card.strip().split('|')
         	
         	if nn.startswith(('2', '5')):
-        		card_type = "MASERT_CARD"
+        		card_type = "MASTER_CARD"
         	elif nn.startswith('4'):
         		card_type = "VISA"
         	elif nn.startswith('3'):
